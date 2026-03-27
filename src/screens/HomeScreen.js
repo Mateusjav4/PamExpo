@@ -7,6 +7,8 @@ export function HomeScreen({ navigation }) {
     <View style={styles.container}>
       <Text style={styles.title}>Tela Inicial</Text>
       <Button onPress={() => navigation.navigate('Profile')}>Ver Desenvolvedores</Button>
+      <Button onPress={() => navigation.navigate('Tarefas')}>Ir para Tarefas</Button>
+      <Button onPress={() => navigation.navigate('Profile')}>Ir para o Perfil</Button>
     </View>
   );
 }
