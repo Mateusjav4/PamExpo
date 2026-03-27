@@ -24,7 +24,7 @@ export function LoginScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Bem-vindo</Text>
-      <Text style={styles.subtitle}>Entre com sua senha e usuário!</Text>
+      <Text style={styles.subtitle}>Entre com suas credenciais</Text>
 
       <View style={styles.form}>
         <Text style={styles.label}>Usuário</Text>

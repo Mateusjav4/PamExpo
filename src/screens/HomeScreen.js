@@ -6,6 +6,7 @@ export function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Tela Inicial</Text>
+      <Button onPress={() => navigation.navigate('Tarefas')}>Ir para Tarefas</Button>
       <Button onPress={() => navigation.navigate('Profile')}>Ir para o Perfil</Button>
     </View>
   );
