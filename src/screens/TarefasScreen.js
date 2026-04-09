@@ -10,10 +10,20 @@ const TAREFAS_ESTATICAS = [
 ];
 
 function ItemTarefa({ titulo, status }) {
+  const statusStyle =
+    status === 'Concluída'
+      ? styles.statusDone
+      : status === 'Em andamento'
+      ? styles.statusProgress
+      : styles.statusPending;
+
   return (
     <View style={styles.item}>
       <Text style={styles.itemTitulo}>{titulo}</Text>
-      <Text style={styles.itemStatus}>Status: {status}</Text>
+
+      <Text style={[styles.itemStatus, statusStyle]}>
+        {status}
+      </Text>
     </View>
   );
 }
@@ -21,9 +31,11 @@ function ItemTarefa({ titulo, status }) {
 export function TarefasScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Lista de Tarefas</Text>
 
-      {/* keyExtractor evita warning/performance ruim ao renderizar listas no React Native. */}
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>Lista de Tarefas</Text>
+      </View>
+
       <FlatList
         data={TAREFAS_ESTATICAS}
         keyExtractor={(item) => item.id}
@@ -39,33 +51,57 @@ export function TarefasScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#f2f4f7',
+  },
+
+  header: {
+    backgroundColor: '#4A90E2',
+    paddingTop: 60,
+    paddingBottom: 30,
+    paddingHorizontal: 20,
+    borderBottomLeftRadius: 30,
+    borderBottomRightRadius: 30,
+  },
+
+  headerTitle: {
+    color: '#fff',
+    fontSize: 22,
+    fontWeight: '700',
+  },
+
+  listContent: {
+    padding: 16,
+    gap: 12,
+  },
+
+  item: {
     backgroundColor: '#fff',
     padding: 16,
+    borderRadius: 16,
+    elevation: 3,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: '700',
-    marginBottom: 12,
-  },
-  listContent: {
-    paddingBottom: 16,
-    gap: 10,
-  },
-  item: {
-    borderWidth: 1,
-    borderColor: '#ddd',
-    borderRadius: 10,
-    padding: 12,
-    backgroundColor: '#fafafa',
-  },
+
   itemTitulo: {
     fontSize: 16,
     fontWeight: '600',
-    marginBottom: 4,
+    marginBottom: 6,
+    color: '#222',
   },
-  itemStatus: {
-    fontSize: 14,
-    color: '#555',
-  },
-});
 
+  itemStatus: {
+    fontSize: 13,
+    fontWeight: '600',
+  },
+
+  statusDone: {
+    color: '#2ecc71',
+  },
+
+  statusProgress: {
+    color: '#f39c12',
+  },
+
+  statusPending: {
+    color: '#e74c3c', 
+  }
+});
